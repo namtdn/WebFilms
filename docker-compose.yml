@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+    node_modules:
+        build: .
+        env_file:
+            - .env
+        ports:
+            - 4000:6060
+        volumes:
+            - .:/app
+            - /app/node_modules
+        links:
+            - database
+
+    database:
+        image: "mariadb"
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: 1
+            
